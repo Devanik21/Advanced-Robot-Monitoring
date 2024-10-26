@@ -6,7 +6,6 @@ joblib
 matplotlib
 seaborn
 xgboost
-sklearn
 lightgbm
 tensorflow
 keras
