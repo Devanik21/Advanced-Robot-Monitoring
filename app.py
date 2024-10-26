@@ -13,7 +13,7 @@ from sklearn.ensemble import RandomForestClassifier
 np.random.seed(50)
 
 # Number of records
-n_records = 10000
+n_records = 20000
 
 # Generate random data for each feature
 sound_level = np.random.normal(80, 30, n_records).astype(int)  # dcb, with some values reaching up to 150 dcb
@@ -92,8 +92,8 @@ st.write(unique_causes)
 
 # Add a filter option
 st.sidebar.title("Filter Options")
-sound_filter = st.sidebar.slider("Sound Level (dcb)", min_value=df['Sound_Level_dcb'].min(), max_value=df['Sound_Level_dcb'].max())
-temperature_filter = st.sidebar.slider("Temperature (°C)", min_value=df['Temperature_C'].min(), max_value=df['Temperature_C'].max())
+sound_filter = st.sidebar.slider("Sound Level (dcb)", min_value=df['Sound_Level_dcb'].min()-100, max_value=df['Sound_Level_dcb'].max()+100)
+temperature_filter = st.sidebar.slider("Temperature (°C)", min_value=df['Temperature_C'].min()-50, max_value=df['Temperature_C'].max()+50)
 
 # Filter the DataFrame based on sidebar inputs
 filtered_df = df[(df['Sound_Level_dcb'] >= sound_filter) & (df['Temperature_C'] >= temperature_filter)]
