@@ -117,7 +117,7 @@ predicted_cause = label_encoder.inverse_transform([predicted_cause_index])[0]
 
 # Display prediction
 st.write(f"#### Predicted Cause of Alert: **{predicted_cause}**")
-
+st.sidebar.image("cyber-security-expert-working-with-technology-neon-lights.jpg")
 
 st.image("2151329542.jpg")  
 st.write("### Overview of Data")
