@@ -102,7 +102,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-
+st.sidebar.image("cyber-security-expert-working-with-technology-neon-lights.jpg")
 # Prediction Section
 st.sidebar.header("Predict Cause of Alert")
 input_sound = st.sidebar.number_input("Input Sound Level (dcb)", min_value=0, max_value=150, value=80)
@@ -117,7 +117,7 @@ predicted_cause = label_encoder.inverse_transform([predicted_cause_index])[0]
 
 # Display prediction
 st.write(f"#### Predicted Cause of Alert: **{predicted_cause}**")
-st.sidebar.image("cyber-security-expert-working-with-technology-neon-lights.jpg")
+
 
 st.image("2151329542.jpg")  
 st.write("### Overview of Data")
