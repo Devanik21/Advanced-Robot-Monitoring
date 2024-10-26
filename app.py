@@ -84,8 +84,7 @@ st.title("Advanced Robot Monitoring Dashboard")
 
 st.write(f"### Model Accuracy: {accuracy:.2f}")
 
-# Display prediction
-st.write(f"#### Predicted Cause of Alert: **{predicted_cause}**")
+
 # Add custom CSS for styling
 st.markdown("""
 <style>
@@ -102,6 +101,11 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
+
+
+# Display prediction
+st.write(f"#### Predicted Cause of Alert: **{predicted_cause}**")
+
 
 st.image("2151329542.jpg")  
 st.write("### Overview of Data")
