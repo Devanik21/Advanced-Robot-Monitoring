@@ -13,7 +13,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
-st.image("https://example.com/icon7.png", width=25, caption="About")  # Replace with your actual icon URL
+st.image("2151329542.jpg")  # Replace with your actual icon URL
 # Set random seed for reproducibility
 np.random.seed(50)
 
