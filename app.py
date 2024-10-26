@@ -13,7 +13,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
-st.image("2151329542.jpg")  # Replace with your actual icon URL
+
 # Set random seed for reproducibility
 np.random.seed(50)
 
@@ -83,6 +83,7 @@ st.title("Advanced Robot Monitoring Dashboard")
 
 st.write(f"### Model Accuracy: {accuracy:.2f}")
 
+st.image("2151329542.jpg")  
 st.write("### Overview of Data")
 st.write("This dashboard shows the monitoring data of an advanced robot, detailing sound levels, temperature, battery status, and any causes of alerts.")
 
