@@ -10,7 +10,7 @@ from sklearn.metrics import accuracy_score
 np.random.seed(50)
 
 # Number of records
-n_records = 100000
+n_records = 1000
 
 # Generate random data for each feature
 sound_level = np.random.normal(80, 30, n_records).astype(int)  # dcb, with some values reaching up to 150 dcb
@@ -64,7 +64,7 @@ y = df['Cause_Encoded']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Train the model
-model = LogisticRegression(max_iter=1000)
+model = RandomForestClassifier(n_estimators=100)
 model.fit(X_train, y_train)
 
 # Predictions and accuracy
