@@ -7,7 +7,12 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
 
-
+st.set_page_config(
+    page_title="Advanced Robot Monitoring",
+    page_icon="🤖",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
 
 # Set random seed for reproducibility
 np.random.seed(50)
