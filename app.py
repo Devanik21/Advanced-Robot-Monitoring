@@ -13,7 +13,7 @@ from sklearn.ensemble import RandomForestClassifier
 np.random.seed(50)
 
 # Number of records
-n_records = 100000
+n_records = 10000
 
 # Generate random data for each feature
 sound_level = np.random.normal(80, 30, n_records).astype(int)  # dcb, with some values reaching up to 150 dcb
