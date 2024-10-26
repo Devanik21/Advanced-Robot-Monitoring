@@ -84,6 +84,8 @@ st.title("Advanced Robot Monitoring Dashboard")
 
 st.write(f"### Model Accuracy: {accuracy:.2f}")
 
+# Display prediction
+st.write(f"#### Predicted Cause of Alert: **{predicted_cause}**")
 # Add custom CSS for styling
 st.markdown("""
 <style>
@@ -150,8 +152,7 @@ input_data = np.array([[input_sound, input_temp, input_battery, input_halted]])
 predicted_cause_index = model.predict(input_data)[0]
 predicted_cause = label_encoder.inverse_transform([predicted_cause_index])[0]
 
-# Display prediction
-st.write(f"#### Predicted Cause of Alert: **{predicted_cause}**")
+
 
 # Add download option
 csv = filtered_df.to_csv(index=False)
