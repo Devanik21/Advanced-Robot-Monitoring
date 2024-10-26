@@ -2,10 +2,10 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
-from sklearn.ensemble import RandomForestClassifier
+import plotly.express as px
 
 st.set_page_config(
     page_title="Advanced Robot Monitoring",
@@ -21,12 +21,12 @@ np.random.seed(50)
 n_records = 20000
 
 # Generate random data for each feature
-sound_level = np.random.normal(80, 30, n_records).astype(int)  # dcb, with some values reaching up to 150 dcb
-temperature = np.random.normal(65, 15, n_records).astype(int)  # Celsius
-battery_drain = np.random.choice([0, 1], size=n_records, p=[0.85, 0.15])  # 0 (normal) or 1 (draining fast)
-process_halted = np.random.choice([0, 1], size=n_records, p=[0.95, 0.05])  # 0 (normal) or 1 (error halted)
+sound_level = np.random.normal(80, 30, n_records).astype(int)
+temperature = np.random.normal(65, 15, n_records).astype(int)
+battery_drain = np.random.choice([0, 1], size=n_records, p=[0.85, 0.15])
+process_halted = np.random.choice([0, 1], size=n_records, p=[0.95, 0.05])
 
-# Define a more complex set of causes based on detailed conditions
+# Define a more complex set of causes
 cause = [
     "Oil Pressure Drop" if sl < 50 and temp < 50 and battery == 0 else
     "Overload Error" if sl > 130 and temp > 90 and halted == 1 else
@@ -59,6 +59,7 @@ df = pd.DataFrame({
     "Process_Halted": process_halted,
     "Cause": cause
 })
+
 # Encode the categorical variable
 label_encoder = LabelEncoder()
 df['Cause_Encoded'] = label_encoder.fit_transform(df['Cause'])
@@ -83,13 +84,30 @@ st.title("Advanced Robot Monitoring Dashboard")
 
 st.write(f"### Model Accuracy: {accuracy:.2f}")
 
+# Add custom CSS for styling
+st.markdown("""
+<style>
+    .main {
+        background-color: #f5f5f5;
+    }
+    .sidebar .sidebar-content {
+        background-color: #2c2f33;
+        color: white;
+    }
+    .stButton>button {
+        background-color: #7289da;
+        color: white;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 st.image("2151329542.jpg")  
 st.write("### Overview of Data")
 st.write("This dashboard shows the monitoring data of an advanced robot, detailing sound levels, temperature, battery status, and any causes of alerts.")
 
 # Display the DataFrame
 st.write("#### Data Sample")
-st.dataframe(df.sample(10))  # Display a random sample of 10 records
+st.dataframe(df.sample(10))
 
 # Display unique causes
 st.write("#### Unique Causes")
@@ -107,6 +125,11 @@ filtered_df = df[(df['Sound_Level_dcb'] >= sound_filter) & (df['Temperature_C'] 
 # Display filtered results
 st.write("#### Filtered Results")
 st.dataframe(filtered_df)
+
+# Create interactive Plotly visualizations
+fig = px.scatter(filtered_df, x="Sound_Level_dcb", y="Temperature_C", color="Cause", title="Sound Level vs Temperature", 
+                 labels={"Sound_Level_dcb": "Sound Level (dcb)", "Temperature_C": "Temperature (°C)"})
+st.plotly_chart(fig)
 
 # Prediction Section
 st.sidebar.header("Predict Cause of Alert")
