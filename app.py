@@ -105,6 +105,10 @@ st.image("2151329542.jpg")
 st.write("### Overview of Data")
 st.write("This dashboard shows the monitoring data of an advanced robot, detailing sound levels, temperature, battery status, and any causes of alerts.")
 
+
+# Display a Data Summary
+st.write("### Data Summary")
+st.write(df.describe())
 # Display the DataFrame
 st.write("#### Data Sample")
 st.dataframe(df.sample(10))
