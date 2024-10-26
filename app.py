@@ -102,6 +102,10 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# Predict cause based on user input
+input_data = np.array([[input_sound, input_temp, input_battery, input_halted]])
+predicted_cause_index = model.predict(input_data)[0]
+predicted_cause = label_encoder.inverse_transform([predicted_cause_index])[0]
 
 # Display prediction
 st.write(f"#### Predicted Cause of Alert: **{predicted_cause}**")
@@ -151,10 +155,6 @@ input_temp = st.sidebar.number_input("Input Temperature (°C)", min_value=0, max
 input_battery = st.sidebar.selectbox("Battery Drain", [0, 1])
 input_halted = st.sidebar.selectbox("Process Halted", [0, 1])
 
-# Predict cause based on user input
-input_data = np.array([[input_sound, input_temp, input_battery, input_halted]])
-predicted_cause_index = model.predict(input_data)[0]
-predicted_cause = label_encoder.inverse_transform([predicted_cause_index])[0]
 
 
 
