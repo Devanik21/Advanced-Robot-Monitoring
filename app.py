@@ -102,6 +102,14 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+
+# Prediction Section
+st.sidebar.header("Predict Cause of Alert")
+input_sound = st.sidebar.number_input("Input Sound Level (dcb)", min_value=0, max_value=150, value=80)
+input_temp = st.sidebar.number_input("Input Temperature (°C)", min_value=0, max_value=150, value=65)
+input_battery = st.sidebar.selectbox("Battery Drain", [0, 1])
+input_halted = st.sidebar.selectbox("Process Halted", [0, 1])
+
 # Predict cause based on user input
 input_data = np.array([[input_sound, input_temp, input_battery, input_halted]])
 predicted_cause_index = model.predict(input_data)[0]
@@ -148,12 +156,6 @@ fig = px.scatter(filtered_df, x="Sound_Level_dcb", y="Temperature_C", color="Cau
                  labels={"Sound_Level_dcb": "Sound Level (dcb)", "Temperature_C": "Temperature (°C)"})
 st.plotly_chart(fig)
 
-# Prediction Section
-st.sidebar.header("Predict Cause of Alert")
-input_sound = st.sidebar.number_input("Input Sound Level (dcb)", min_value=0, max_value=150, value=80)
-input_temp = st.sidebar.number_input("Input Temperature (°C)", min_value=0, max_value=150, value=65)
-input_battery = st.sidebar.selectbox("Battery Drain", [0, 1])
-input_halted = st.sidebar.selectbox("Process Halted", [0, 1])
 
 
 
