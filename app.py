@@ -7,11 +7,13 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
 
+
+
 # Set random seed for reproducibility
 np.random.seed(50)
 
 # Number of records
-n_records = 1000
+n_records = 100000
 
 # Generate random data for each feature
 sound_level = np.random.normal(80, 30, n_records).astype(int)  # dcb, with some values reaching up to 150 dcb
@@ -52,7 +54,6 @@ df = pd.DataFrame({
     "Process_Halted": process_halted,
     "Cause": cause
 })
-
 # Encode the categorical variable
 label_encoder = LabelEncoder()
 df['Cause_Encoded'] = label_encoder.fit_transform(df['Cause'])
